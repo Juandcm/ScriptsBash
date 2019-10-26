@@ -1,0 +1,12 @@
+https://blog.desdelinux.net/ssh-sin-password-solo-3-pasos/
+apt install rsync
+para probar el respaldo
+rsync -avz -e 'ssh -q' /var/www/html servidor@ip:/lugar
+para que lo haga automatico
+escribir: crontab -e
+agregar al final del archivo el script a ejecutar
+@daily rsync -avz -e 'ssh -q' /var/www/html servidor@ip:/lugar
+@daily rsync -avz -e 'ssh -q' /BaseDeDatos servidor@ip:/lugar
+@monthly rsync -avz -e 'ssh -q' /etc servidor@ip:/lugar
+@monthly rsync -avz -e 'ssh -q' /ScriptSistema servidor@ip:/lugar
+@daily ./ScriptSistema/respaldarbd.sh
